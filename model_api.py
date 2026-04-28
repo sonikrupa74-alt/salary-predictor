@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 import pickle
 
 app = FastAPI()
@@ -16,7 +17,7 @@ model = pickle.load(open("p_salary.pkl", "rb"))
 
 @app.get("/")
 def home():
-    return {"Message": "All Ok"}
+    return FileResponse("index.html")   # ✅ serve frontend
 
 @app.post("/predict")
 def predict(data: dict):
@@ -27,7 +28,6 @@ def predict(data: dict):
         "YearsExperience": exp,
         "PredictedSalary": float(result[0])
     }
-
 
 """
 User clicks button
