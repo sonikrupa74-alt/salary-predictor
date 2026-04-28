@@ -17,7 +17,7 @@ model = pickle.load(open("p_salary.pkl", "rb"))
 
 @app.get("/")
 def home():
-    return FileResponse("webpage/index.html")
+    return FileResponse("index.html")
 @app.post("/predict")
 def predict(data: dict):
     exp = float(data['YearsExperience'])
